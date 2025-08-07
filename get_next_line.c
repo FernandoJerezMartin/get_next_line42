@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 13:25:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/06 23:52:14 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/07 21:29:50 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char *get_next_line(int fd)
 	
 	return (line);
 	//Falta por implementar:
-	// - Strjoin
 	// - get_line_buffer
 	// - update_gbuffer
 
@@ -81,4 +80,30 @@ static int read_from_fd(int fd, char *general_buffer)
 	
 	free(local_buffer);
 	return (general_buffer);
+}
+
+char *get_line_buffer(char *general_buffer)
+{
+	int	i;
+	char *line;
+
+	if (!general_buffer || !general_buffer[0])
+		return (NULL);
+	i = 0;
+	while (general_buffer[i] && general_buffer[i] != '\n')
+		i++;
+	line = malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return(NULL);
+	i = 0;
+	while (general_buffer[i] && general_buffer[i] != '\n')
+	{
+		line[i] = general_buffer[i];
+		i++;
+	}
+	if (general_buffer[i] == '\n')
+		line[i] = '\n';
+	i++;
+	line[i] = '\0';
+	return (line);
 }
