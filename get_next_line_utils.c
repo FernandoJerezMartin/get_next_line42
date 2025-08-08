@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 23:35:34 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/08 12:10:57 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:46:18 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,24 @@ static void	ft_strcpy(char *dest, const char *src, int *index)
 	}
 }
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
 	int		i;
-	int		s1_len;
-	int		s2_len;
+	size_t		s1_len;
+	size_t		s2_len;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -61,14 +73,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}

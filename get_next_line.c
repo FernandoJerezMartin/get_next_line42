@@ -6,39 +6,11 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 13:25:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/08 12:12:24 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:30:07 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*get_next_line(int fd)
-{
-	static char	general_buffer = NULL;
-	char		*line;
-
-	if (!fd && BUFFER_SIZE <= 0)
-	{
-		return (NULL);
-	}
-	if (read_from_fd(fd, &general_buffer) == -1)
-	{
-		return (NULL);
-	}
-	if (!general_buffer)
-	{
-		free(general_buffer);
-		general_buffer = NULL;
-		return (NULL);
-	}
-	line = get_line_buffer(general_buffer);
-	general_buffer = update_gbuffer(general_buffer);
-	return (line);
-}
-/* Falta por implementar:
-	 - get_line_buffer
-	 - update_gbuffer
-	*/
 
 static int	read_from_fd(int fd, char *general_buffer)
 {
@@ -93,3 +65,31 @@ char	*get_line_buffer(char *general_buffer)
 	line[i] = '\0';
 	return (line);
 }
+
+char	*get_next_line(int fd)
+{
+	static char	general_buffer = NULL;
+	char		*line;
+
+	if (!fd && BUFFER_SIZE <= 0)
+	{
+		return (NULL);
+	}
+	if (read_from_fd(fd, &general_buffer) == -1)
+	{
+		return (NULL);
+	}
+	if (!general_buffer)
+	{
+		free(general_buffer);
+		general_buffer = NULL;
+		return (NULL);
+	}
+	line = get_line_buffer(general_buffer);
+	general_buffer = update_gbuffer(general_buffer);
+	return (line);
+}
+/* Falta por implementar:
+	 - get_line_buffer
+	 - update_gbuffer
+*/
