@@ -56,8 +56,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
 	int		i;
-	size_t		s1_len;
-	size_t		s2_len;
+	size_t	s1_len;
+	size_t	s2_len;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -72,4 +72,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
-

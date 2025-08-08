@@ -24,8 +24,8 @@
 char		*ft_strchr(const char *s, int c);
 char		*get_next_line(int fd);
 static int	read_from_fd(int fd, char *general_buffer);
-void	    ft_strcpy(char *dest, const char *src, int *index);
-size_t	    ft_strlen(const char *s);
-char	    *ft_strjoin(char const *s1, char const *s2);
+void		ft_strcpy(char *dest, const char *src, int *index);
+size_t		ft_strlen(const char *s);
+char		*ft_strjoin(char const *s1, char const *s2);
 
 #endif

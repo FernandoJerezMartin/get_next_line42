@@ -67,9 +67,9 @@ char	*get_line_buffer(char *general_buffer)
 
 char	*aim_next(char *general_buffer)
 {
-	int	i;
-	int j;
-	char *new_buffer;
+	int		i;
+	int		j;
+	char	*new_buffer;
 
 	i = 0;
 	j = 0;
@@ -80,9 +80,9 @@ char	*aim_next(char *general_buffer)
 		free(general_buffer);
 		return (NULL);
 	}
-	new_buffer = malloc (ft_strlen(general_buffer) - i + 1);
+	new_buffer = malloc(ft_strlen(general_buffer) - i + 1);
 	if (!new_buffer)
-		return(NULL);
+		return (NULL);
 	i++;
 	while (general_buffer[i])
 		new_buffer[j++] = general_buffer[i++];
@@ -115,6 +115,6 @@ char	*get_next_line(int fd)
 	return (line);
 }
 /* Falta por implementar:
-	 - get_line_buffer
-	 - update_gbuffer
+		- get_line_buffer
+		- update_gbuffer
 */
