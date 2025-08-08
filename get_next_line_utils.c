@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 23:35:34 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/07 20:23:30 by fernando         ###   ########.fr       */
+/*   Updated: 2025/08/08 12:10:57 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
