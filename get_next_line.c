@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjerez-- <fjerez--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 13:25:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/08 12:30:07 by fernando         ###   ########.fr       */
+/*   Created: 2025/08/04 13:25:10 by fjerez--          #+#    #+#             */
+/*   Updated: 2025/08/08 18:57:55 by fjerez--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	read_from_fd(int fd, char *general_buffer)
 	int		bytes_read;
 
 	if (!fd && !general_buffer)
-		return (NULL);
+		return (-1);
 	local_buffer = malloc(BUFFER_SIZE + 1);
 	if (!local_buffer)
 		return (-1);
@@ -29,7 +29,6 @@ static int	read_from_fd(int fd, char *general_buffer)
 		if (bytes_read < 0)
 		{
 			free(local_buffer);
-			free(&general_buffer);
 			general_buffer = NULL;
 			return (-1);
 		}
@@ -37,7 +36,7 @@ static int	read_from_fd(int fd, char *general_buffer)
 		general_buffer = ft_strjoin(general_buffer, local_buffer);
 	}
 	free(local_buffer);
-	return (general_buffer);
+	return (ft_strlen(general_buffer));
 }
 
 char	*get_line_buffer(char *general_buffer)
@@ -66,16 +65,42 @@ char	*get_line_buffer(char *general_buffer)
 	return (line);
 }
 
+char	*aim_next(char *general_buffer)
+{
+	int	i;
+	int j;
+	char *new_buffer;
+
+	i = 0;
+	j = 0;
+	while (general_buffer[i] && general_buffer[i] != '\n')
+		i++;
+	if (!general_buffer[i])
+	{
+		free(general_buffer);
+		return (NULL);
+	}
+	new_buffer = malloc (ft_strlen(general_buffer) - i + 1);
+	if (!new_buffer)
+		return(NULL);
+	i++;
+	while (general_buffer[i])
+		new_buffer[j++] = general_buffer[i++];
+	new_buffer[j] = '\0';
+	free(general_buffer);
+	return (new_buffer);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	general_buffer = NULL;
+	static char	*general_buffer = NULL;
 	char		*line;
 
 	if (!fd && BUFFER_SIZE <= 0)
 	{
 		return (NULL);
 	}
-	if (read_from_fd(fd, &general_buffer) == -1)
+	if (read_from_fd(fd, general_buffer) == -1)
 	{
 		return (NULL);
 	}
@@ -86,7 +111,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = get_line_buffer(general_buffer);
-	general_buffer = update_gbuffer(general_buffer);
+	general_buffer = aim_next(general_buffer);
 	return (line);
 }
 /* Falta por implementar:

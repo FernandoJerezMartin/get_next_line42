@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjerez-- <fjerez--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/06 23:35:34 by fernando          #+#    #+#             */
-/*   Updated: 2025/08/08 12:46:18 by fernando         ###   ########.fr       */
+/*   Created: 2025/08/06 23:35:34 by fjerez--          #+#    #+#             */
+/*   Updated: 2025/08/08 16:41:22 by fjerez--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-static void	ft_strcpy(char *dest, const char *src, int *index)
+void	ft_strcpy(char *dest, const char *src, int *index)
 {
 	int	i;
 
