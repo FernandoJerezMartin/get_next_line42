@@ -7,7 +7,7 @@ char	*get_next_line(int fd);
 
 int	main(void)
 {
-	int fd = open("yo_mama.txt", O_RDONLY);
+	int fd = open("testing.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		perror("open");
