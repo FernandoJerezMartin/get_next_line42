@@ -7,6 +7,7 @@ char	*get_next_line(int fd);
 
 int	main(void)
 {
+	
 	int fd = open("testing.txt", O_RDONLY);
 	if (fd == -1)
 	{
@@ -19,6 +20,12 @@ int	main(void)
 	{
 		printf("%s", line);
 		free(line);
+	}
+	printf("Abriendo archivo...\n");
+	while ((line = get_next_line(fd)) != NULL)
+	{
+    printf("Línea: %s", line);
+    free(line);
 	}
 
 	close(fd);
